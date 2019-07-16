@@ -1,0 +1,29 @@
+{
+  "waterings": [
+    {
+      "date": "Tue, 16 Jul 2019 12:32:16 GMT",
+      "user": "U061F1EUR"
+    },
+    {
+      "date": "Tue, 16 Jul 2019 12:34:35 GMT",
+      "user": "U061F1EUR"
+    },
+    {
+      "date": "Tue, 16 Jul 2019 12:34:37 GMT",
+      "user": "U061F1EUR"
+    },
+    {
+      "date": "Tue, 16 Jul 2019 12:42:35 GMT",
+      "user": "U061F1EUR"
+    },
+    {
+      "date": "Tue, 16 Jul 2019 12:44:19 GMT",
+      "user": "U061F1EUR"
+    },
+    {
+      "date": "Tue, 16 Jul 2019 12:44:37 GMT",
+      "user": "U061F1EUR"
+    }
+  ],
+  "count": 16
+}
