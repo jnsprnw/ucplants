@@ -26,32 +26,21 @@ function testForQuestion (text) {
 	return testForContent(text, phrases)
 }
 
-function createListener (waterings, msg) {
+function createListener (events) {
 	app.post('/', function (req, res, next) {
 		const payload = req.body
 		if (has(payload, 'challenge')) {
+			// This only happens when registing the bot
 			res.json({
 				challenge: payload.challenge
 			})
 		} else if (payload.event.type === 'message') {
-			// console.log(payload)
 			if (testForWatered(payload.event.text)) {
-				res.send('Danke!')
-				msg.sendMessage('Danke!')
-				// console.log('Danke!')
-				// sendMessage('Danke!')
-				waterings.addWatering(payload.event)
+				events.watered(payload.event)
 			} else if (testForQuestion(payload.event.text)) {
-				// res.send('Did you question?')
-				const answer = waterings.answerWatering()
-				msg.sendMessage('Question')
-				// sendMessage(answer)
-				msg.sendMessage(answer)
-				// res.send(answer)
-				res.send('Question')
-			} else {
-				res.send('Sorry, I didn’t get that')
+				events.lastWateringQuestion()
 			}
+			res.sendStatus(200)
 	  } else {
 	  	res.sendStatus(200)
 	  }

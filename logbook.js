@@ -55,6 +55,6 @@ module.exports = class Person {
 
 		console.log('Waterings requested')
 
-		return `${user} watered them ${format(date)}. She or he did that already ${wateringsByUser} times!`
+		return `<@${user}> watered them ${format(date)}. She or he did that already ${wateringsByUser} times!`
 	}
 }
