@@ -26,7 +26,7 @@ function testForQuestion (text) {
 	return testForContent(text, phrases)
 }
 
-function createListener (waterings, sendMsg) {
+function createListener (waterings, msg) {
 	app.post('/', function (req, res, next) {
 		const payload = req.body
 		if (has(payload, 'challenge')) {
@@ -37,16 +37,16 @@ function createListener (waterings, sendMsg) {
 			// console.log(payload)
 			if (testForWatered(payload.event.text)) {
 				res.send('Danke!')
-				sendMsg('Danke!')
+				msg.sendMessage('Danke!')
 				// console.log('Danke!')
 				// sendMessage('Danke!')
 				waterings.addWatering(payload.event)
 			} else if (testForQuestion(payload.event.text)) {
 				// res.send('Did you question?')
 				const answer = waterings.answerWatering()
-				sendMsg('Question')
+				msg.sendMessage('Question')
 				// sendMessage(answer)
-				sendMsg(answer)
+				msg.sendMessage(answer)
 				// res.send(answer)
 				res.send('Question')
 			} else {
