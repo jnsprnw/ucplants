@@ -32,7 +32,7 @@ module.exports = class Person {
   watered (event) {
     console.log('Watered event triggered')
     this.waterings.addWatering(event)
-    this.postwoman.sendMessage(`Thank you so much <@${event.user}>!`)
+    this.postwoman.sendMessage(`Thank you so much <@${event.user}>! ${randomItem([':deciduous_tree:', ':earth_africa:', ':green_heart:', ':cherry_blossom:', ':herb:', ':ear_of_rice:', ':cactus:', ':palm_tree:', ':evergreen_tree:'])}`)
   }
 
   lastWateringQuestion () {
@@ -77,7 +77,7 @@ module.exports = class Person {
           this.postwoman.sendMessage('Someone should have watered the plants yesterday, but I give you another chance today :)')
           break
         default:
-          const messages = ['Hey people! Plants need water, too!', 'Why does no one love plants anymore?', 'Did we do something wrong?']
+          const messages = ['Hey people! Plants need water, too! :fallen_leaf:', 'Why does no one love plants anymore? :wilted_flower:', 'Did we do something wrong?']
           this.postwoman.sendMessage([randomItem(messages), `It’s been ${diff} days since the last watering`].join('\n'))
           break
       }
