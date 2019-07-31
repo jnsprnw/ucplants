@@ -44,7 +44,7 @@ function createListener (events) {
 			res.json({
 				challenge: payload.challenge
 			})
-		} else if (payload.event.type === 'message' && has(payload.event, 'user')) {
+		} else if (payload.event.type === 'message' && has(payload.event, 'user') && has(payload.event, 'subtype')) {
 			if (testForWatered(payload.event.text)) {
 				events.watered(payload.event)
 			} else if (testForHighscore(payload.event.text)) {
