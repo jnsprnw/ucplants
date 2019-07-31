@@ -55,7 +55,7 @@ module.exports = class Person {
       }
     }
     if (rank.length === 1) {
-      messages.push(`Looks like <@${rank[0][0]}> is doing all the work. Let’s her/him a coffee!`)
+      messages.push(`Looks like <@${rank[0][0]}> is doing all the work. Let’s buy her/him a coffee!`)
     }
     this.postwoman.sendMessage(messages.join('\n'))
     // console.log(messages.join('\n'))
