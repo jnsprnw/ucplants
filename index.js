@@ -14,4 +14,6 @@ const events = new EventHandler(waterings, postwoman)
 
 listen(events)
 
-cron(waterings)
+events.overallScoringQuestion()
+
+cron(events)

@@ -54,6 +54,6 @@ module.exports = class Person {
   }
 
   sendInitMessage () {
-    this.sendMessage(`Hello everyone, I’m your personal and very smart (!) plant watering bot.`)
+    // this.sendMessage(`Hello everyone, I’m your personal and very smart (!) plant watering bot.`)
   }
 }

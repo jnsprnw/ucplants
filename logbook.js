@@ -1,6 +1,6 @@
 'use strict'
 
-const { format } = require('timeago.js')
+const { chain, toPairs, sortBy, map, countBy, reverse } = require('lodash')
 
 // Setting up LowDB
 const low = require('lowdb')
@@ -27,12 +27,34 @@ module.exports = class Person {
 		  .length
 	}
 
+	getWateringsByUsers () {
+		const waterings = this.db
+			.get(KEY_WATERINGS)
+		  .value()
+
+		return chain(waterings)
+			.map(KEY_USER)
+			.countBy()
+			.toPairs()
+			.sortBy('1')
+			.reverse()
+			.value()
+	}
+
 	getMostRecentWatering () {
 		return this.db
 			.get(KEY_WATERINGS)
 			.sortBy(KEY_DATE)
 		  .takeRight(1)
 		  .value()[0]
+	}
+
+	removeWatering () {
+		const numberOfWaterings = this.db.get(KEY_WATERINGS).value().length
+
+		this.db.get(`${KEY_WATERINGS}[${numberOfWaterings - 1}]`)
+		  .remove()
+		  .write()
 	}
 
 	addWatering ({ user }) {
@@ -46,15 +68,5 @@ module.exports = class Person {
 		  .write()
 
 		console.log('Watering added')
-	}
-
-	answerWatering () {
-		const { date, user } = this.getMostRecentWatering()
-
-		const wateringsByUser = this.getWateringsByUser(user)
-
-		console.log('Waterings requested')
-
-		return `<@${user}> watered them ${format(date)}. She or he did that already ${wateringsByUser} times!`
 	}
 }

@@ -1,10 +1,10 @@
 // Setting up cron job
 const CronJob = require('cron').CronJob
 
-function createCron (waterings) {
-	new CronJob('*/40 * * * * *', function() {
-		console.log(waterings.answerWatering())
-	  // console.log('You will see this message every second');
+function createCron (events) {
+	new CronJob('0 12 1-31 * *', function() {
+		console.log('Water reminder running', new Date())
+	  events.waterNeeded()
 	}, null, true);
 }
 
