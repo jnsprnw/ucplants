@@ -9,9 +9,10 @@ function randomItem (arr) {
 }
 
 module.exports = class Person {
-  constructor (waterings, postwoman) {
+  constructor (waterings, postwoman, planttime) {
     this.waterings = waterings
     this.postwoman = postwoman
+    this.planttime = planttime
   }
 
   didNotUnderstand (event) {
@@ -27,6 +28,11 @@ module.exports = class Person {
     console.log('Mistake event triggered')
     this.waterings.removeWatering()
     this.postwoman.sendMessage(`The last watering was removed`)
+  }
+
+  plantTime () {
+    console.log('PlantTime event triggered')
+    this.postwoman.sendMessage(`It’s Monday – That means it’s PlantTime :nerd_face:!\nLearn something new about plants: ${this.planttime.getLink()}`)
   }
 
   watered (event) {
@@ -55,7 +61,7 @@ module.exports = class Person {
       }
     }
     if (rank.length === 1) {
-      messages.push(`Looks like <@${rank[0][0]}> is doing all the work. Let’s buy her/him a coffee!`)
+      messages.push(`Looks like <@${rank[0][0]}> is doing all the work. Let’s buy her/him a ${randomItem(['coffee', 'ice cream', 'meal', 'flower'])}!`)
     }
     this.postwoman.sendMessage(messages.join('\n'))
     // console.log(messages.join('\n'))

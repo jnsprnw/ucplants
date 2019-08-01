@@ -9,8 +9,11 @@ const postwoman = new Messenger('plants')
 const Logbook = require('./logbook')
 const waterings = new Logbook('db.json')
 
+const LinkList = require('./linklist')
+const planttime = new LinkList('planttime.json')
+
 const EventHandler = require('./events')
-const events = new EventHandler(waterings, postwoman)
+const events = new EventHandler(waterings, postwoman, planttime)
 
 listen(events)
 
