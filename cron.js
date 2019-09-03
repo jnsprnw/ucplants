@@ -2,7 +2,7 @@
 const CronJob = require('cron').CronJob
 
 function createCron (events) {
-	new CronJob('0 12 1-31 * * *', function() {
+	new CronJob('0 0 12 1-31 * *', function() {
 		console.log('Water reminder running', new Date())
 	  events.waterNeeded()
 	}, null, true);
