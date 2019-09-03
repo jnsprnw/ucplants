@@ -67,20 +67,20 @@ module.exports = class Person {
     // console.log(messages.join('\n'))
   }
 
-  waterNeeded () {
+  waterNeeded (odd) {
     const { date } = this.waterings.getMostRecentWatering()
     const diff = diffDates(new Date(), new Date(date) , 'days')
 
     if (diff > 5) {
       switch (diff) {
         case 6:
-          this.postwoman.sendMessage('Just a quick reminder that someone should water the plants tomorrow :)')
+          this.postwoman.sendMessage(`Just a quick reminder that someone should water the plants tomorrow :)${odd ? ' (PS: No watering this week for Severina and Zamy)' : ''}`)
           break
         case 7:
-          this.postwoman.sendMessage('Anyone up for watering the plants today?')
+          this.postwoman.sendMessage(`Anyone up for watering the plants today?${odd ? ' (PS: Severina and Zamy are good this week.)' : ''}`)
           break
         case 8:
-          this.postwoman.sendMessage('Someone should have watered the plants yesterday, but I give you another chance today :)')
+          this.postwoman.sendMessage(`Someone should have watered the plants yesterday, but I give you another chance today :)${odd ? ' (PS: As you know: no watering this week for Severina and Zamy)' : ''}`)
           break
         default:
           const messages = ['Hey people! Plants need water, too! :fallen_leaf:', 'Why does no one love plants anymore? :wilted_flower:', 'Did we do something wrong?']
